@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+
+// Porta será definida automaticamente pelo Render ou será 3000 por padrão
+const port = process.env.PORT || 3000;
 
 const advices = {
     toothCare: [
@@ -25,6 +27,7 @@ const advices = {
     ]
 };
 
+// Endpoint para obter conselhos de acordo com a categoria
 app.get('/advice/:category', (req, res) => {
     const category = req.params.category;
     const adviceList = advices[category];
@@ -37,6 +40,7 @@ app.get('/advice/:category', (req, res) => {
     }
 });
 
+// Inicializa o servidor
 app.listen(port, () => {
-    console.log(`API de conselhos sobre higiene bucal rodando em http://localhost:${port}`);
+    console.log(`API de conselhos sobre higiene bucal rodando na porta ${port}`);
 });
